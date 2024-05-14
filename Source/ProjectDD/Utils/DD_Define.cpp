@@ -2,3 +2,5 @@
 
 
 #include "DD_Define.h"
+
+DEFINE_LOG_CATEGORY(DD_Log);
