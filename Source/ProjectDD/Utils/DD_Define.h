@@ -21,3 +21,19 @@ DECLARE_LOG_CATEGORY_EXTERN(DD_Log, Log, All);
 DD_CHECK(Object != nullptr);					   \
 Object->ConditionalBeginDestroy();	 \
 };
+
+// GameInstance
+UENUM(BlueprintType)
+enum class EDD_LaunchProcessType : uint8
+{
+ None = 0,
+ 
+ CreateBasicUtility,
+ CreateManager,
+ RegistTick,
+ RegistState,
+ LoadBaseWorld,
+ ProcessFinished,
+
+ End
+};
