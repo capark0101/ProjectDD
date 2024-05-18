@@ -31,9 +31,9 @@ void UDD_Widget::InitWidget(const FName& TypeName, bool _bManaged, bool bActivat
 		Active(true);
 	}
 
-	//SetOriginVisible(GetVisibility());
+	SetOriginVisible(GetVisibility());
 
-	//InitResourceWidgetInfo();
+	InitResourceWidgetInfo();
 }
 
 void UDD_Widget::FinishWidget()
@@ -67,14 +67,14 @@ void UDD_Widget::DeActive(bool bImmediately)
 		SetVisibility(ESlateVisibility::HitTestInvisible);
 	}
 
-	// if(IsExistAnim(DefaultWidgetAnimation::DisAppearance) && bImmediately == false)
-	// {
-	// 	PlayAnimationByName(DefaultWidgetAnimation::DisAppearance);
-	// }
-	// else
-	// {
-	// 	RemoveFromParent();
-	// }
+	if(IsExistAnim(DefaultWidgetAnimation::DisAppearance) && bImmediately == false)
+	{
+		PlayAnimationByName(DefaultWidgetAnimation::DisAppearance);
+	}
+	else
+	{
+		RemoveFromParent();
+	}
 	bActive = false;
 }
 
@@ -87,10 +87,10 @@ void UDD_Widget::Active(bool _bActive)
 	
 	if(IsVisible())
 	{
-		// if(IsExistAnim(DefaultWidgetAnimation::Appearance) == true)
-		// {
-		// 	PlayAnimationByName(DefaultWidgetAnimation::Appearance);
-		// }
+		if(IsExistAnim(DefaultWidgetAnimation::Appearance) == true)
+		{
+			PlayAnimationByName(DefaultWidgetAnimation::Appearance);
+		}
 
 		if(_bActive == false)
 		{
@@ -185,4 +185,40 @@ bool UDD_Widget::StopAnimation(const FName& AnimName)
 	}
 
 	return false;
+}
+
+void UDD_Widget::SetOriginVisible(ESlateVisibility _Visibility)
+{
+	OriginVisibility = _Visibility;
+}
+
+void UDD_Widget::OnAnimFinished(const FName& AnimName)
+{
+	if(AnimName == DefaultWidgetAnimation::Appearance)
+	{
+		PlayIdleAnimation();
+	}
+}
+
+void UDD_Widget::InitResourceWidgetInfo()
+{
+	if(bManaged == false)
+	{
+		return;
+	}
+}
+
+void UDD_Widget::PlayIdleAnimation()
+{
+	if(GetAnimationByName(DefaultWidgetAnimation::Idle))
+	{
+		PlayAnimationByName(DefaultWidgetAnimation::Idle, 0.f, 0);
+	}
+}
+
+bool UDD_Widget::IsExistAnim(FName AnimName) const
+{
+	const TObjectPtr<UWidgetAnimation> WidgetAnim = GetAnimationByName(AnimName);
+
+	return WidgetAnim != nullptr;
 }

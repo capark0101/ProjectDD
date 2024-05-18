@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "5.4",
+	"EngineAssociation": "{D03884C2-4D85-68BE-19BA-21BD24B42E8D}",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -13,6 +13,13 @@
 	"Plugins": [
 		{
 			"Name": "ModelingToolsEditorMode",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
+			"Name" : "CommonUI",
 			"Enabled": true,
 			"TargetAllowList": [
 				"Editor"

@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "DD_WidgetDefine.h"
 #include "Blueprint/UserWidget.h"
 #include "DD_Widget.generated.h"
 
@@ -39,18 +40,18 @@ public:
 	TObjectPtr<UWidgetAnimation> GetAnimationByName(FName AnimName) const;
 	bool StopAnimation(const FName& AnimName);
 	
-	//FORCEINLINE void SetResourceWidgetInfo(const FCY_ResourceWidgetInfo& Info) { ResourceWidgetInfo = Info; }
-	//FORCEINLINE FDD_ResourceWidgetInfo GetResourceWidgetInfo() const { return ResourceWidgetInfo; }
+	FORCEINLINE void SetResourceWidgetInfo(const FDD_ResourceWidgetInfo& Info) { ResourceWidgetInfo = Info; }
+	FORCEINLINE FDD_ResourceWidgetInfo GetResourceWidgetInfo() const { return ResourceWidgetInfo; }
 	FORCEINLINE void SetZOrder(int32 _ZOrder) { ZOrder = _ZOrder; }
 
-	//UFUNCTION(BlueprintCallable, Category = "UCY_Widget")
-	//void SetOriginVisible(ESlateVisibility _Visibility);
+	UFUNCTION(BlueprintCallable, Category = "UCY_Widget")
+	void SetOriginVisible(ESlateVisibility _Visibility);
 protected:
-	//virtual void OnAnimFinished(const FName& AnimName);
+	virtual void OnAnimFinished(const FName& AnimName);
 	
-	//void InitResourceWidgetInfo();
+	void InitResourceWidgetInfo();
 
-	//void PlayIdleAnimation();
+	void PlayIdleAnimation();
 	
 	bool bActive;
 	bool bAddToViewport;
@@ -61,13 +62,13 @@ protected:
 	UPROPERTY(Category = UCY_Widget, EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	int32 ZOrder = 0;
 
-	//FCY_ResourceWidgetInfo ResourceWidgetInfo;
+	FDD_ResourceWidgetInfo ResourceWidgetInfo;
 
 	UPROPERTY()
 	TMap<FName, TObjectPtr<UWidgetAnimation>> Animations;
 	
 private:
-	//bool IsExistAnim(FName AnimName) const;
+	bool IsExistAnim(FName AnimName) const;
 	
 	UPROPERTY()
 	TArray<class UDD_Button*> Buttons;
