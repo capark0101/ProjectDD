@@ -18,10 +18,13 @@ public class ProjectDD : ModuleRules
 		PrivateIncludePaths.Add("ProjectDD/StateMachine");
 		PrivateIncludePaths.Add("ProjectDD/Table");
 		PrivateIncludePaths.Add("ProjectDD/Table/Mapper");
+		PrivateIncludePaths.Add("ProjectDD/Scene");
+		PrivateIncludePaths.Add("ProjectDD/Level");
 		PrivateIncludePaths.Add("ProjectDD/Unit");
 		PrivateIncludePaths.Add("ProjectDD/Utils");
+		PrivateIncludePaths.Add("ProjectDD/Widget");
         
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "UMG", "CommonUI", "Kismet"});
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "UMG", "CommonUI", "Kismet", "AIModule"});
 
 		PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore", "EditorStyle" });
 		
