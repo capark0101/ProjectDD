@@ -3,11 +3,12 @@
 
 #include "DD_SingletonManager.h"
 #include "DD_Singleton.h"
+#include "DD_TableManager.h"
 #include "Utils/DD_Define.h"
 
-TObjectPtr<UDD_SingletonManager> UDD_SingletonManager::Instance = nullptr;
+UDD_SingletonManager* UDD_SingletonManager::Instance = nullptr;
 
-TObjectPtr<UDD_SingletonManager> UDD_SingletonManager::CreateInstance()
+UDD_SingletonManager* UDD_SingletonManager::CreateInstance()
 {
 	Instance = DD_NewObject<UDD_SingletonManager>();
 	Instance->AddToRoot();
@@ -18,7 +19,8 @@ TObjectPtr<UDD_SingletonManager> UDD_SingletonManager::CreateInstance()
 
 void UDD_SingletonManager::DestroyInstance()
 {
-	if (IsValid(Instance))
+	
+	if (Instance != nullptr)
 	{
 		Instance->RemoveSingletons();
 		Instance->RemoveFromRoot();
@@ -29,7 +31,7 @@ void UDD_SingletonManager::DestroyInstance()
 
 void UDD_SingletonManager::BuiltInInitializeSingletons()
 {
-	for (const TSharedPtr<ISingleton> Singleton : Singletons)
+	for (ISingleton* Singleton : Singletons)
 	{
 		Singleton->BuiltInInitialize();
 	}
@@ -44,7 +46,7 @@ void UDD_SingletonManager::InitializeSingletons()
 		return;
 	}
     
-	for (const TSharedPtr<ISingleton> Singleton : Singletons)
+	for (ISingleton* Singleton : Singletons)
 	{
 		Singleton->Initialize();
 	}
@@ -59,7 +61,7 @@ void UDD_SingletonManager::FinalizeSingletons()
 		return;
 	}
 
-	for (const TSharedPtr<ISingleton> Singleton : Singletons)
+	for (ISingleton* Singleton : Singletons)
 	{
 		Singleton->PreFinalize();
 		Singleton->Finalize();
@@ -71,7 +73,7 @@ void UDD_SingletonManager::TickSingletons(float DeltaTime)
 {
 	if (bInitialized)
 	{
-		for (const TSharedPtr<ISingleton> Singleton : Singletons)
+		for (ISingleton* Singleton : Singletons)
 		{
 			Singleton->Tick(DeltaTime);
 		}
@@ -84,6 +86,7 @@ void UDD_SingletonManager::RemoveSingletons()
 	SingletonsForTick.Reset();
 	
 	// [Class]::RemoveInstance();
+	UDD_TableManager::RemoveInstance();
 }
 
 void UDD_SingletonManager::RegisterSingletons()
@@ -91,6 +94,7 @@ void UDD_SingletonManager::RegisterSingletons()
 	Singletons.Reset();
 
 	// Singletons.Emplace([Class]::MakeInstance());
+	Singletons.Emplace(UDD_TableManager::MakeInstance());
 }
 
 void UDD_SingletonManager::RegisterSingletonsForTick()
@@ -98,4 +102,5 @@ void UDD_SingletonManager::RegisterSingletonsForTick()
 	SingletonsForTick.Reset();
 
 	// SingletonsForTick.Emplace([Class]::GetInstance());
+	SingletonsForTick.Emplace(UDD_TableManager::GetInstance());
 }

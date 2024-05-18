@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
+#include "Engine/StreamableManager.h"
 #include "Utils/DD_Define.h"
 #include "DD_GameInstance.generated.h"
 
@@ -27,6 +28,8 @@ public:
 
 	bool Tick(float DeltaSeconds);
 
+	FORCEINLINE FStreamableManager& GetAssetLoader() { return AssetLoader; }
+	
 private:
 	void OnStartGameInstance(UGameInstance* GameInstance);
 	
@@ -55,4 +58,6 @@ private:
 	FTSTicker::FDelegateHandle TickDelegateHandle;
 
 	EDD_LaunchProcessType ProcessType = EDD_LaunchProcessType::None;
+
+	FStreamableManager AssetLoader;
 };

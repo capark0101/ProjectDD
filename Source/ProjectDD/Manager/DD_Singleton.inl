@@ -5,7 +5,7 @@
 #include "DD_Singleton.h"
 
 template<typename TClass>
-TObjectPtr<TClass> TDD_Singleton<TClass>::MakeInstance()
+TClass* TDD_Singleton<TClass>::MakeInstance()
 {
 	if(Instance != nullptr)
 	{
@@ -35,7 +35,7 @@ void TDD_Singleton<TClass>::RemoveInstance()
 }
 
 template<typename TClass>
-TObjectPtr<TClass> TDD_Singleton<TClass>::GetInstance()
+TClass* TDD_Singleton<TClass>::GetInstance()
 {
 	return Instance;
 }

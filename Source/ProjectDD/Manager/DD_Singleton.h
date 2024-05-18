@@ -2,6 +2,7 @@
 
 #pragma once
 #include "CoreMinimal.h"
+#include "UObject/Object.h"
 
 /**
  * 
@@ -25,16 +26,16 @@ template<typename TClass>
 class PROJECTDD_API TDD_Singleton : public ISingleton
 {
 protected:
-	static TObjectPtr<TClass> Instance;
+	static TClass* Instance;
 
 public:
-	static TObjectPtr<TClass> MakeInstance();
+	static TClass* MakeInstance();
 	static void RemoveInstance();
-	static TObjectPtr<TClass> GetInstance();
+	static TClass* GetInstance();
 	static bool HasInstance();
 };
 
 template<typename TClass>
-TObjectPtr<TClass> TDD_Singleton<TClass>::Instance = nullptr;
+TClass* TDD_Singleton<TClass>::Instance = nullptr;
 
 #include "DD_Singleton.inl"

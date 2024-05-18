@@ -9,10 +9,21 @@ public class ProjectDD : ModuleRules
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 		
 		PrivateIncludePaths.Add("ProjectDD");
+		PrivateIncludePaths.Add("ProjectDD/Actor");
+		PrivateIncludePaths.Add("ProjectDD/Character");
+		PrivateIncludePaths.Add("ProjectDD/Pawn");
+		PrivateIncludePaths.Add("ProjectDD/Game");
+		PrivateIncludePaths.Add("ProjectDD/Input");
+		PrivateIncludePaths.Add("ProjectDD/Manager");
+		PrivateIncludePaths.Add("ProjectDD/StateMachine");
+		PrivateIncludePaths.Add("ProjectDD/Table");
+		PrivateIncludePaths.Add("ProjectDD/Table/Mapper");
+		PrivateIncludePaths.Add("ProjectDD/Unit");
+		PrivateIncludePaths.Add("ProjectDD/Utils");
         
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "UMG" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "UMG", "CommonUI", "Kismet"});
 
-		PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
+		PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore", "EditorStyle" });
 		
 		// Uncomment if you are using online features
 		// PrivateDependencyModuleNames.Add("OnlineSubsystem");

@@ -12,12 +12,15 @@
 UCLASS()
 class PROJECTDD_API UDD_SingletonManager : public UObject
 {
-	GENERATED_BODY()
-
 public:
-	static TObjectPtr<UDD_SingletonManager> CreateInstance();
+	GENERATED_BODY()
+	
+	UDD_SingletonManager() {}
+	virtual ~UDD_SingletonManager() override {}
+	
+	static UDD_SingletonManager* CreateInstance();
 	static void DestroyInstance();
-	static TObjectPtr<UDD_SingletonManager> GetInstance() { return Instance; }
+	static UDD_SingletonManager* GetInstance() { return Instance; }
 	
 	void BuiltInInitializeSingletons();
 
@@ -29,7 +32,7 @@ public:
 	void RemoveSingletons();
 
 protected:
-	static TObjectPtr<UDD_SingletonManager> Instance;
+	static UDD_SingletonManager* Instance;
 
 private:
 	void RegisterSingletons();
@@ -38,6 +41,6 @@ private:
 	bool bIsBuiltInInitialized = false;
 	bool bInitialized = false;
 	
-	TArray<TSharedPtr<class ISingleton>> Singletons;
-	TArray<TSharedPtr<class ISingleton>> SingletonsForTick;
+	TArray<class ISingleton*> Singletons;
+	TArray<class ISingleton*> SingletonsForTick;
 };

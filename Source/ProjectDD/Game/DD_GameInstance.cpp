@@ -3,6 +3,7 @@
 
 #include "DD_GameInstance.h"
 #include "Manager/DD_SingletonManager.h"
+#include "Utils/DD_BasicUtilLibrary.h"
 
 UDD_GameInstance::UDD_GameInstance()
 {
@@ -62,7 +63,7 @@ bool UDD_GameInstance::Tick(float DeltaSeconds)
 
 void UDD_GameInstance::OnStartGameInstance(UGameInstance* GameInstance)
 {
-	if (const TObjectPtr<UDD_SingletonManager> SingletonManager = UDD_SingletonManager::GetInstance())
+	if (UDD_SingletonManager* SingletonManager = UDD_SingletonManager::GetInstance())
 	{
 		SingletonManager->InitializeSingletons();
 	}
@@ -118,17 +119,32 @@ void UDD_GameInstance::ProcessFinalize()
 
 bool UDD_GameInstance::CreateBasicUtility()
 {
+	
+	if(UDD_BasicUtilLibrary::HasInstance() == false)
+	{
+		if(const TObjectPtr<UDD_BasicUtilLibrary> BasicGameUtility = UDD_BasicUtilLibrary::MakeInstance())
+		{
+			BasicGameUtility->Initialize(this);
+			return true;
+		}
+	}
 	return true;
 }
 
 bool UDD_GameInstance::DestroyBasicUtility()
 {
+	if(const TObjectPtr<UDD_BasicUtilLibrary> BasicGameUtility = UDD_BasicUtilLibrary::GetInstance())
+	{
+		BasicGameUtility->Finalize();
+		BasicGameUtility->RemoveInstance();
+		return true;
+	}
 	return true;
 }
 
 bool UDD_GameInstance::CreateManagers()
 {
-	if (const TObjectPtr<UDD_SingletonManager> SingletonManager = UDD_SingletonManager::CreateInstance())
+	if (UDD_SingletonManager* SingletonManager = UDD_SingletonManager::CreateInstance())
 	{
 		SingletonManager->BuiltInInitializeSingletons();
 	}
@@ -137,7 +153,7 @@ bool UDD_GameInstance::CreateManagers()
 
 bool UDD_GameInstance::DestroyManagers()
 {
-	if (const TObjectPtr<UDD_SingletonManager> SingletonManager = UDD_SingletonManager::GetInstance())
+	if (UDD_SingletonManager* SingletonManager = UDD_SingletonManager::GetInstance())
 	{
 		SingletonManager->FinalizeSingletons();
 	}
