@@ -47,6 +47,11 @@ void UDD_Widget::FinishWidget()
 	DeActive();
 }
 
+void UDD_Widget::SynchronizeProperties()
+{
+	Super::SynchronizeProperties();
+}
+
 void UDD_Widget::CloseWidget()
 {
 	if(bManaged)

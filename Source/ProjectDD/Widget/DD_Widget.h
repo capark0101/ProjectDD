@@ -21,6 +21,8 @@ public:
 	virtual void InitWidget(const FName& TypeName, bool _bManaged, bool bActivate = true);
 	virtual void FinishWidget();
 
+	virtual void SynchronizeProperties() override;
+	
 	UFUNCTION()
 	virtual void CloseWidget();
 
