@@ -20,10 +20,7 @@
 		},
 		{
 			"Name" : "CommonUI",
-			"Enabled": true,
-			"TargetAllowList": [
-				"Editor"
-			]
+			"Enabled": true
 		}
 	]
 }

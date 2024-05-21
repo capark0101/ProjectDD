@@ -11,7 +11,7 @@ public class ProjectDD : ModuleRules
 		PrivateIncludePaths.Add("ProjectDD");
 		PrivateIncludePaths.Add("ProjectDD/Actor");
 		PrivateIncludePaths.Add("ProjectDD/Character");
-		PrivateIncludePaths.Add("ProjectDD/Pawn");
+		PrivateIncludePaths.Add("ProjectDD/Actor/Pawn");
 		PrivateIncludePaths.Add("ProjectDD/Game");
 		PrivateIncludePaths.Add("ProjectDD/Input");
 		PrivateIncludePaths.Add("ProjectDD/Manager");
