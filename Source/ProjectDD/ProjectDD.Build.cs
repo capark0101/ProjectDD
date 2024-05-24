@@ -23,6 +23,7 @@ public class ProjectDD : ModuleRules
 		PrivateIncludePaths.Add("ProjectDD/Unit");
 		PrivateIncludePaths.Add("ProjectDD/Utils");
 		PrivateIncludePaths.Add("ProjectDD/Widget");
+		PrivateIncludePaths.Add("ProjectDD/Widget/BuiltInWidget");
         
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "UMG", "CommonUI", "Kismet", "AIModule"});
 

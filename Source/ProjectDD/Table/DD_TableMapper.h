@@ -22,7 +22,7 @@ public:
 	virtual void Finalize() {}
 
 	template<typename T>
-	static void BuildTable(TObjectPtr<UDD_TableManager> TableManager, EDD_TableDataType Type, TMap<int32, TObjectPtr<T>>& MapperTable)
+	static void BuildTable(TObjectPtr<UDD_TableManager> TableManager, EDD_TableDataType Type, TMap<int32, TSharedPtr<T>>& MapperTable)
 	{
 		TMap<FName, uint8*> RowData;
 		TableManager->GetRowDataMap(Type, RowData);
