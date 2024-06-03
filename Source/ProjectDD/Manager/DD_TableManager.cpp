@@ -194,11 +194,11 @@ void UDD_TableManager::MakeTableStructData()
 	ResetData();
 	
 	CreateTableData(EDD_TableDataType::Common, "/Game/TableData/Common.Common", UDD_Mapper_Common::StaticClass());
-	CreateTableData(EDD_TableDataType::Resource_Widget, "/Game/TableData/Common.Common", UDD_Mapper_Resource_Widget::StaticClass());
+	CreateTableData(EDD_TableDataType::Resource_Widget, "/Game/TableData/Resource_Widget.Resource_Widget", UDD_Mapper_Resource_Widget::StaticClass());
 	
-	CreateTableData(EDD_TableDataType::BasePath_Directory, "/Game/TableData/Common.Common");
-	CreateTableData(EDD_TableDataType::BasePath_BP_File, "/Game/TableData/Common.Common");
-	CreateTableData(EDD_TableDataType::BasePath_Img_File, "/Game/TableData/Common.Common");
+	CreateTableData(EDD_TableDataType::BasePath_Directory, "/Game/TableData/BasePath_Directory.BasePath_Directory");
+	CreateTableData(EDD_TableDataType::BasePath_BP_File, "/Game/TableData/BasePath_BP_File.BasePath_BP_File");
+	CreateTableData(EDD_TableDataType::BasePath_Img_File, "/Game/TableData/BasePath_Img_File.BasePath_Img_File");
 	
 	CreateTableData(EDD_TableDataType::PlayerStatus, "/Game/TableData/PlayerStatus.PlayerStatus", UDD_Mapper_PlayerStatus::StaticClass());
 	CreateTableData(EDD_TableDataType::Enemy, "/Game/TableData/Enemy.Enemy", UDD_Mapper_Enemy::StaticClass());

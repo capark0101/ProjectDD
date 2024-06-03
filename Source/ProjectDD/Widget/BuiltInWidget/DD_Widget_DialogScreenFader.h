@@ -16,7 +16,7 @@ class PROJECTDD_API UDD_Widget_DialogScreenFader : public UDD_Widget
 	GENERATED_BODY()
 
 public:
-	static FSoftObjectPath GetWidgetPath() { return FSoftObjectPath("/Game/Widget/BuiltInWidget/DialogScreenFader.DialogScreenFader"); }
+	static FSoftObjectPath GetWidgetPath() { return FSoftObjectPath("/Game/UI/Widget/BuiltInWidget/DialogScreenFader.DialogScreenFader"); }
 	
 	void StartScreenFade(EDD_FadeType _FadeType, const TFunction<void()>& FadeCallback = nullptr);
 	

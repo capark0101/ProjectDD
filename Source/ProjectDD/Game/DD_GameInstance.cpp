@@ -2,8 +2,10 @@
 
 
 #include "DD_GameInstance.h"
+
+#include "DD_BasicUtilLibrary.h"
+#include "DD_SceneManager.h"
 #include "Manager/DD_SingletonManager.h"
-#include "Utils/DD_BasicUtilLibrary.h"
 
 UDD_GameInstance::UDD_GameInstance()
 {
@@ -44,6 +46,8 @@ void UDD_GameInstance::OnWorldChanged(UWorld* OldWorld, UWorld* NewWorld)
 void UDD_GameInstance::LoadComplete(const float LoadTime, const FString& MapName)
 {
 	Super::LoadComplete(LoadTime, MapName);
+
+	gSceneMng.SceneLoadComplete(LoadTime, MapName);
 }
 
 bool UDD_GameInstance::Tick(float DeltaSeconds)
@@ -55,6 +59,7 @@ bool UDD_GameInstance::Tick(float DeltaSeconds)
 
 	if(ProcessType == EDD_LaunchProcessType::ProcessFinished)
 	{
+		gSceneMng.ExecuteLoadLevelDelegate();
 		ProcessType = EDD_LaunchProcessType::End;
 	}
 	
@@ -177,16 +182,36 @@ bool UDD_GameInstance::UnRegisterTick()
 
 bool UDD_GameInstance::RegisterState()
 {
+	DD_CHECK(UDD_SceneManager::HasInstance());
+
+	gSceneMng.RegisterScenes();
+
 	return true;
 }
 
 bool UDD_GameInstance::LoadBaseWorld()
 {
+	if(BaseWorld.IsValid())
+	{
+		gSceneMng.LoadLevelBySoftObjectPtr(BaseWorld, FDD_LoadLevelInitialized::CreateWeakLambda(this, [this](const FString& Value)
+		{
+			gSceneMng.ChangeScene(EDD_GameSceneType::Logo);
+			gSceneMng.SetSceneBehaviorTreeAsset(SceneBTAsset);
+			gSceneMng.RegistSceneBehaviorTree();
+		}));
+		return true;
+	}
 	return true;
 }
 
 bool UDD_GameInstance::UnLoadBaseWorld()
 {
+	if(BaseWorld.IsValid())
+	{
+		BaseWorld = nullptr;
+		return true;
+	}
+	
 	return true;
 }
 

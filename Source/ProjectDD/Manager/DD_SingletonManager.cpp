@@ -2,8 +2,13 @@
 
 
 #include "DD_SingletonManager.h"
+
+#include "DD_InputManager.h"
+#include "DD_SceneManager.h"
 #include "DD_Singleton.h"
 #include "DD_TableManager.h"
+#include "DD_UnitManager.h"
+#include "DD_WidgetManager.h"
 #include "Utils/DD_Define.h"
 
 UDD_SingletonManager* UDD_SingletonManager::Instance = nullptr;
@@ -87,6 +92,10 @@ void UDD_SingletonManager::RemoveSingletons()
 	
 	// [Class]::RemoveInstance();
 	UDD_TableManager::RemoveInstance();
+	UDD_SceneManager::RemoveInstance();
+	UDD_InputManager::RemoveInstance();
+	UDD_WidgetManager::RemoveInstance();
+	UDD_UnitManager::RemoveInstance();
 }
 
 void UDD_SingletonManager::RegisterSingletons()
@@ -95,6 +104,10 @@ void UDD_SingletonManager::RegisterSingletons()
 
 	// Singletons.Emplace([Class]::MakeInstance());
 	Singletons.Emplace(UDD_TableManager::MakeInstance());
+	Singletons.Emplace(UDD_SceneManager::MakeInstance());
+	Singletons.Emplace(UDD_InputManager::MakeInstance());
+	Singletons.Emplace(UDD_WidgetManager::MakeInstance());
+	Singletons.Emplace(UDD_UnitManager::MakeInstance());
 }
 
 void UDD_SingletonManager::RegisterSingletonsForTick()
@@ -103,4 +116,8 @@ void UDD_SingletonManager::RegisterSingletonsForTick()
 
 	// SingletonsForTick.Emplace([Class]::GetInstance());
 	SingletonsForTick.Emplace(UDD_TableManager::GetInstance());
+	SingletonsForTick.Emplace(UDD_SceneManager::GetInstance());
+	SingletonsForTick.Emplace(UDD_InputManager::GetInstance());
+	SingletonsForTick.Emplace(UDD_WidgetManager::GetInstance());
+	SingletonsForTick.Emplace(UDD_UnitManager::GetInstance());
 }

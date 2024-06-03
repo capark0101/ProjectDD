@@ -52,11 +52,14 @@ private:
 
 	void RestartGame();
 	
-	UPROPERTY(Category = UCY_GameInstance, EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(Category = UDD_GameInstance, EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	TSoftObjectPtr<UWorld> BaseWorld;
 	
 	FTSTicker::FDelegateHandle TickDelegateHandle;
 
+	UPROPERTY(Category = UDd_GameInstance, EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<class UBehaviorTree> SceneBTAsset = nullptr;
+	
 	EDD_LaunchProcessType ProcessType = EDD_LaunchProcessType::None;
 
 	FStreamableManager AssetLoader;
