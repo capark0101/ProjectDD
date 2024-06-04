@@ -15,16 +15,16 @@ void UDD_Widget_Logo::FinishWidget()
 	Super::FinishWidget();
 }
 
-void UDD_Widget_Logo::OnAnimationFinished_Implementation(const UWidgetAnimation* Animation)
+void UDD_Widget_Logo::OnAnimFinished(const FName& AnimName)
 {
-	Super::OnAnimationFinished_Implementation(Animation);
+	Super::OnAnimFinished(AnimName);
 
-	if(Animation == GetAnimationByName(DefaultWidgetAnimation::Appearance))
+	if(AnimName == DefaultWidgetAnimation::Appearance)
 	{
 		PlayAnimationByName(DefaultWidgetAnimation::DisAppearance);
 	}
 
-	if(Animation == GetAnimationByName(DefaultWidgetAnimation::DisAppearance))
+	if(AnimName == DefaultWidgetAnimation::DisAppearance)
 	{
 		gSceneMng.ChangeScene(EDD_GameSceneType::Lobby);
 	}

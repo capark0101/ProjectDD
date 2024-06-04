@@ -195,7 +195,7 @@ TObjectPtr<UDD_Widget> UDD_WidgetManager::CreateWidget_Internal(const FName& Typ
 		return nullptr;
 	}
 
-	const TSharedPtr<FResource_Widget> ResourceWidgetData = ResourceWidgetMapper->GetResourceWidgetData(TypeName);
+	const FResource_Widget* ResourceWidgetData = ResourceWidgetMapper->GetResourceWidgetData(TypeName);
 	if(ResourceWidgetData == nullptr)
 	{
 		// 테이블 자료 문제

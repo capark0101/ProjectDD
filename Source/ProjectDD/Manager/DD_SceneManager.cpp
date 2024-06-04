@@ -17,6 +17,7 @@
 #include "EngineUtils.h"
 #include "Engine/LevelStreamingDynamic.h"
 #include "Kismet/GameplayStatics.h"
+#include "ScaeneState/DD_SceneState_Lobby.h"
 #include "ScaeneState/DD_SceneState_Logo.h"
 
 UDD_SceneManager::UDD_SceneManager()
@@ -138,7 +139,7 @@ TObjectPtr<UDD_SceneBase> UDD_SceneManager::GetCurrentScene() const
 void UDD_SceneManager::RegisterScenes() const
 {
 	RegistSceneState(static_cast<uint8>(EDD_GameSceneType::Logo), TEXT("Logo"), UDD_SceneState_Logo::StaticClass());
-	//RegistSceneState(static_cast<uint8>(EDD_GameSceneType::Logo), TEXT("Logo"), UDD_SceneState_Logo::StaticClass());
+	RegistSceneState(static_cast<uint8>(EDD_GameSceneType::Lobby), TEXT("Lobby"), UDD_SceneState_Lobby::StaticClass());
 }
 
 void UDD_SceneManager::SceneLoadComplete(float LoadTime, const FString& LevelName)

@@ -15,11 +15,11 @@ class PROJECTDD_API UDD_Mapper_Resource_Widget : public UDD_TableMapper
 	GENERATED_BODY()
 	
 public:
-	virtual void Initialize(TObjectPtr<class UDD_TableManager> Mng) override;
+	virtual void Initialize(TObjectPtr<UDD_TableManager> Mng) override;
 	virtual void Finalize() override;
 	
-	TSharedPtr<struct FResource_Widget> GetResourceWidgetData(const FName& TypeName);
+	struct FResource_Widget* GetResourceWidgetData(const FName& TypeName);
 	
 private:
-	TMap<FName, TSharedPtr<struct FResource_Widget>> ResourceWidgetDatas;
+	TMap<FName, FResource_Widget*> ResourceWidgetDatas;
 };

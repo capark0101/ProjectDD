@@ -113,6 +113,8 @@ void UDD_Widget::OnAnimationStarted_Implementation(const UWidgetAnimation* Anima
 void UDD_Widget::OnAnimationFinished_Implementation(const UWidgetAnimation* Animation)
 {
 	Super::OnAnimationFinished_Implementation(Animation);
+
+	OnAnimFinished(FName(Animation->GetMovieScene()->GetName()));
 }
 
 void UDD_Widget::Init()

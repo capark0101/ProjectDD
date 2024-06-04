@@ -8,7 +8,7 @@ void UDD_Mapper_Resource_Widget::Initialize(TObjectPtr<UDD_TableManager> Mng)
 {
 	Super::Initialize(Mng);
 
-	TMap<int32, TSharedPtr<FResource_Widget>> PrimitiveResourceWidget;
+	TMap<int32, FResource_Widget*> PrimitiveResourceWidget;
 	PrimitiveResourceWidget.Empty();
 	
 	BuildTable(Mng, EDD_TableDataType::Resource_Widget, PrimitiveResourceWidget);
@@ -21,14 +21,14 @@ void UDD_Mapper_Resource_Widget::Initialize(TObjectPtr<UDD_TableManager> Mng)
 
 void UDD_Mapper_Resource_Widget::Finalize()
 {
-	Super::Finalize();
-
 	ResourceWidgetDatas.Empty();
+
+	Super::Finalize();
 }
 
-TSharedPtr<FResource_Widget> UDD_Mapper_Resource_Widget::GetResourceWidgetData(const FName& TypeName)
+FResource_Widget* UDD_Mapper_Resource_Widget::GetResourceWidgetData(const FName& TypeName)
 {
-	if(const TSharedPtr<FResource_Widget>* pResourceWidgetData = ResourceWidgetDatas.Find(TypeName))
+	if(FResource_Widget** pResourceWidgetData = ResourceWidgetDatas.Find(TypeName))
 	{
 		return *pResourceWidgetData;
 	}

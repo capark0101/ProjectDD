@@ -15,6 +15,8 @@ class PROJECTDD_API UDD_Widget_Lobby : public UDD_Widget
 {
 	GENERATED_BODY()
 public:
+	FORCEINLINE static FName GetWidgetName() { return TEXT("Lobby"); }
+	
 	virtual void InitWidget(const FName& TypeName, bool _bManaged, bool bActivate) override;
 	virtual void FinishWidget() override;
 
